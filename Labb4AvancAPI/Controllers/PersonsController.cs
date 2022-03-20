@@ -21,7 +21,7 @@ namespace Labb4AvancAPI.Controllers
         }
         [HttpGet]
         public async Task<IActionResult> GetAllPersons()
-        {
+        {            
             return Ok(await _labb4Avanc.GetAll());
         }
 

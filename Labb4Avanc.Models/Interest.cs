@@ -13,5 +13,10 @@ namespace Labb4Avanc.Models
         public string InterestTitle { get; set; }
 
         public string InterestDescription { get; set; }
+
+        public int PersonId { get; set; }
+
+        public Person Person { get; set; }
+                
     }
 }

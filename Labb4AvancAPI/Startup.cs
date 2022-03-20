@@ -36,7 +36,6 @@ namespace Labb4AvancAPI
 
             services.AddScoped<ILabb4Avanc<Interest>, InterestRepository>();
             services.AddScoped<ILabb4Avanc<Person>, PersonRepository>();
-            services.AddScoped<ILabb4Avanc<Leisure>, LeisureRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

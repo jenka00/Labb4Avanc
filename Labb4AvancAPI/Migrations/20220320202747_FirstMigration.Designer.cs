@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Labb4AvancAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220319085734_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220320202747_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -63,14 +63,14 @@ namespace Labb4AvancAPI.Migrations
                             InterestId = 3,
                             InterestDescription = "Betrakta och tolka bokstäver eller annan nedskriven information i t ex böcker och tidningar.",
                             InterestTitle = "Läsa",
-                            PersonId = 1
+                            PersonId = 3
                         },
                         new
                         {
                             InterestId = 4,
                             InterestDescription = "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en drake som man håller i.",
                             InterestTitle = "Kitesurfing",
-                            PersonId = 4
+                            PersonId = 1
                         });
                 });
 

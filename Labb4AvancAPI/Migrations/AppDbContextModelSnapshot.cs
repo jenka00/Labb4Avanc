@@ -32,7 +32,12 @@ namespace Labb4AvancAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
                     b.HasKey("InterestId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("Interests");
 
@@ -41,43 +46,30 @@ namespace Labb4AvancAPI.Migrations
                         {
                             InterestId = 1,
                             InterestDescription = "Rida på ryggen av en häst.",
-                            InterestTitle = "Ridning"
+                            InterestTitle = "Ridning",
+                            PersonId = 2
                         },
                         new
                         {
                             InterestId = 2,
                             InterestDescription = "Lagsport med två lag där varje lag med fötterna ska försöka göra mål i motståndarnas lag.",
-                            InterestTitle = "Fotboll"
+                            InterestTitle = "Fotboll",
+                            PersonId = 1
                         },
                         new
                         {
                             InterestId = 3,
                             InterestDescription = "Betrakta och tolka bokstäver eller annan nedskriven information i t ex böcker och tidningar.",
-                            InterestTitle = "Läsa"
+                            InterestTitle = "Läsa",
+                            PersonId = 3
                         },
                         new
                         {
                             InterestId = 4,
                             InterestDescription = "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en drake som man håller i.",
-                            InterestTitle = "Kitesurfing"
+                            InterestTitle = "Kitesurfing",
+                            PersonId = 1
                         });
-                });
-
-            modelBuilder.Entity("Labb4Avanc.Models.Leisure", b =>
-                {
-                    b.Property<int>("LeisureId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
-                    b.HasKey("LeisureId");
-
-                    b.HasIndex("PersonId");
-
-                    b.ToTable("Leisures");
                 });
 
             modelBuilder.Entity("Labb4Avanc.Models.Person", b =>
@@ -107,32 +99,36 @@ namespace Labb4AvancAPI.Migrations
                         {
                             PersonId = 1,
                             FirstName = "Tommy",
-                            LastName = "Andersson"
+                            LastName = "Andersson",
+                            Phone = "0736334987"
                         },
                         new
                         {
                             PersonId = 2,
                             FirstName = "Annicka",
-                            LastName = "Andersson"
+                            LastName = "Andersson",
+                            Phone = "089954534"
                         },
                         new
                         {
                             PersonId = 3,
                             FirstName = "Anna",
-                            LastName = "Lundgren"
+                            LastName = "Lundgren",
+                            Phone = "031223344"
                         },
                         new
                         {
                             PersonId = 4,
                             FirstName = "Johannes",
-                            LastName = "Storm"
+                            LastName = "Storm",
+                            Phone = "0702112233"
                         });
                 });
 
-            modelBuilder.Entity("Labb4Avanc.Models.Leisure", b =>
+            modelBuilder.Entity("Labb4Avanc.Models.Interest", b =>
                 {
                     b.HasOne("Labb4Avanc.Models.Person", "Person")
-                        .WithMany("Leisure")
+                        .WithMany("Interest")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -14,22 +14,33 @@ namespace Labb4AvancAPI.Model
 
         }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<Interest> Interests { get; set; }
-        public DbSet<Leisure> Leisures { get; set; }
+        public DbSet<Interest> Interests { get; set; }  
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person { PersonId = 1, FirstName = "Tommy", LastName = "Andersson" });
+                new Person { PersonId = 1, 
+                    FirstName = "Tommy", 
+                    LastName = "Andersson", 
+                    Phone = "0736334987" });
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person { PersonId = 2, FirstName = "Annicka", LastName = "Andersson" });
+                new Person { PersonId = 2, 
+                    FirstName = "Annicka", 
+                    LastName = "Andersson", 
+                    Phone = "089954534" });
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person { PersonId = 3, FirstName = "Anna", LastName = "Lundgren" });
+                new Person 
+                { PersonId = 3, 
+                    FirstName = "Anna", 
+                    LastName = "Lundgren",
+                    Phone = "031223344"
+                });
 
 
             base.OnModelCreating(modelBuilder);
@@ -38,7 +49,8 @@ namespace Labb4AvancAPI.Model
                 {
                     PersonId = 4,
                     FirstName = "Johannes",
-                    LastName = "Storm"
+                    LastName = "Storm",
+                    Phone = "0702112233"
                 });
 
             modelBuilder.Entity<Interest>().HasData(
@@ -46,7 +58,8 @@ namespace Labb4AvancAPI.Model
                {
                    InterestId = 1,
                    InterestTitle = "Ridning",
-                   InterestDescription = "Rida på ryggen av en häst."                   
+                   InterestDescription = "Rida på ryggen av en häst.",
+                   PersonId = 2
                });
             modelBuilder.Entity<Interest>().HasData(
            new Interest
@@ -54,7 +67,9 @@ namespace Labb4AvancAPI.Model
                InterestId = 2,
                InterestTitle = "Fotboll",
                InterestDescription = "Lagsport med två lag där varje lag med fötterna " +
-               "ska försöka göra mål i motståndarnas lag."              
+               "ska försöka göra mål i motståndarnas lag.",
+               PersonId = 1
+           
            });
             modelBuilder.Entity<Interest>().HasData(
             new Interest
@@ -62,7 +77,9 @@ namespace Labb4AvancAPI.Model
                 InterestId = 3,
                 InterestTitle = "Läsa",
                 InterestDescription = "Betrakta och tolka bokstäver eller annan nedskriven information i " +
-                 "t ex böcker och tidningar."               
+                 "t ex böcker och tidningar.",
+                PersonId = 3,
+                
             });
             modelBuilder.Entity<Interest>().HasData(
            new Interest
@@ -70,7 +87,8 @@ namespace Labb4AvancAPI.Model
                InterestId = 4,
                InterestTitle = "Kitesurfing",
                InterestDescription = "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en " +
-               "drake som man håller i."               
+               "drake som man håller i." ,
+               PersonId = 1
            });
         }
     }

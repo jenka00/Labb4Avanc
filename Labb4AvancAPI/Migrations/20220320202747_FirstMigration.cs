@@ -2,7 +2,7 @@
 
 namespace Labb4AvancAPI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class FirstMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,9 +59,9 @@ namespace Labb4AvancAPI.Migrations
                 values: new object[,]
                 {
                     { 2, "Lagsport med två lag där varje lag med fötterna ska försöka göra mål i motståndarnas lag.", "Fotboll", 1 },
-                    { 3, "Betrakta och tolka bokstäver eller annan nedskriven information i t ex böcker och tidningar.", "Läsa", 1 },
+                    { 4, "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en drake som man håller i.", "Kitesurfing", 1 },
                     { 1, "Rida på ryggen av en häst.", "Ridning", 2 },
-                    { 4, "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en drake som man håller i.", "Kitesurfing", 4 }
+                    { 3, "Betrakta och tolka bokstäver eller annan nedskriven information i t ex böcker och tidningar.", "Läsa", 3 }
                 });
 
             migrationBuilder.CreateIndex(
