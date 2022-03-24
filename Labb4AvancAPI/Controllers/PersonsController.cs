@@ -81,7 +81,7 @@ namespace Labb4AvancAPI.Controllers
             }
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Person>> UpdateInterest(int id, Person person)
+        public async Task<ActionResult<Person>> UpdatePerson(int id, Person person)
         {
             try
             {

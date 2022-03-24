@@ -15,8 +15,6 @@ namespace Labb4Avanc.Models
 
         public string Phone { get; set; }
 
-        public string Url { get; set; }
-
-        public ICollection<Interest> Interest { get; set; }
+        public virtual ICollection<Leisure> Leisure { get; set; }
     }
 }

@@ -29,13 +29,15 @@ namespace Labb4AvancAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling
+            = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<AppDbContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("Connection")));
 
             services.AddScoped<ILabb4Avanc<Interest>, InterestRepository>();
             services.AddScoped<ILabb4Avanc<Person>, PersonRepository>();
+            services.AddScoped<ILabb4Avanc<Leisure>, LeisureRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

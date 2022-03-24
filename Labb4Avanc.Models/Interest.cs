@@ -14,9 +14,6 @@ namespace Labb4Avanc.Models
 
         public string InterestDescription { get; set; }
 
-        public int PersonId { get; set; }
-
-        public Person Person { get; set; }
-                
+        public virtual ICollection<Leisure> Leisure { get; set; }
     }
 }

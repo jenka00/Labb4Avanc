@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Labb4AvancAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220320204524_UpdateSeedData")]
-    partial class UpdateSeedData
+    [Migration("20220324202612_Update")]
+    partial class Update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -34,12 +34,7 @@ namespace Labb4AvancAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PersonId")
-                        .HasColumnType("int");
-
                     b.HasKey("InterestId");
-
-                    b.HasIndex("PersonId");
 
                     b.ToTable("Interests");
 
@@ -48,29 +43,66 @@ namespace Labb4AvancAPI.Migrations
                         {
                             InterestId = 1,
                             InterestDescription = "Rida på ryggen av en häst.",
-                            InterestTitle = "Ridning",
-                            PersonId = 2
+                            InterestTitle = "Ridning"
                         },
                         new
                         {
                             InterestId = 2,
                             InterestDescription = "Lagsport med två lag där varje lag med fötterna ska försöka göra mål i motståndarnas lag.",
-                            InterestTitle = "Fotboll",
-                            PersonId = 1
+                            InterestTitle = "Fotboll"
                         },
                         new
                         {
                             InterestId = 3,
                             InterestDescription = "Betrakta och tolka bokstäver eller annan nedskriven information i t ex böcker och tidningar.",
-                            InterestTitle = "Läsa",
-                            PersonId = 3
+                            InterestTitle = "Läsa"
                         },
                         new
                         {
                             InterestId = 4,
                             InterestDescription = "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en drake som man håller i.",
-                            InterestTitle = "Kitesurfing",
-                            PersonId = 1
+                            InterestTitle = "Kitesurfing"
+                        });
+                });
+
+            modelBuilder.Entity("Labb4Avanc.Models.Leisure", b =>
+                {
+                    b.Property<int>("LeisureId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("InterestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LeisureId");
+
+                    b.HasIndex("InterestId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("Leisures");
+
+                    b.HasData(
+                        new
+                        {
+                            LeisureId = 1,
+                            InterestId = 1,
+                            PersonId = 2,
+                            Url = "https://www.ridsport.se"
+                        },
+                        new
+                        {
+                            LeisureId = 2,
+                            InterestId = 2,
+                            PersonId = 1,
+                            Url = "https://www.fotbollskanalen.se"
                         });
                 });
 
@@ -127,10 +159,16 @@ namespace Labb4AvancAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Labb4Avanc.Models.Interest", b =>
+            modelBuilder.Entity("Labb4Avanc.Models.Leisure", b =>
                 {
+                    b.HasOne("Labb4Avanc.Models.Interest", "Interest")
+                        .WithMany("Leisure")
+                        .HasForeignKey("InterestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Labb4Avanc.Models.Person", "Person")
-                        .WithMany("Interest")
+                        .WithMany("Leisure")
                         .HasForeignKey("PersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

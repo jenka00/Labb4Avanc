@@ -43,15 +43,15 @@ namespace Labb4AvancAPI.Services
         public async Task<Interest> GetSingle(int id)
         {
             return await _appContext.Interests.FirstOrDefaultAsync(i => i.InterestId == id);
-        }
+        }        
 
         public async Task<Interest> Update(Interest Entity)
         {
-            var result = await _appContext.Interests.FirstOrDefaultAsync(p => p.InterestId == Entity.InterestId);
+            var result = await _appContext.Interests.FirstOrDefaultAsync(i => i.InterestId == Entity.InterestId);
             if (result != null)
             {
                 result.InterestTitle = Entity.InterestTitle;
-                result.InterestDescription = Entity.InterestDescription;
+                result.InterestDescription = Entity.InterestDescription;               
                 
                 await _appContext.SaveChangesAsync();
 

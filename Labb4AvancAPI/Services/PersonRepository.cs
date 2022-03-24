@@ -35,7 +35,7 @@ namespace Labb4AvancAPI.Services
         }
 
         public async Task<IEnumerable<Person>> GetAll()
-        {
+        {           
             return await _appContext.Persons.ToListAsync();
         }
 
@@ -51,7 +51,7 @@ namespace Labb4AvancAPI.Services
             {
                 result.FirstName = Entity.FirstName;
                 result.LastName = Entity.LastName;
-                result.Phone = Entity.Phone;
+                result.Phone = Entity.Phone;               
                 await _appContext.SaveChangesAsync();
 
                 return result;

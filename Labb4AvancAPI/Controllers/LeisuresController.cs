@@ -11,23 +11,23 @@ namespace Labb4AvancAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class InterestsController : ControllerBase
+    public class LeisuresController : ControllerBase
     {
-        private ILabb4Avanc<Interest> _labb4Avanc;
+        private ILabb4Avanc<Leisure> _labb4Avanc;
 
-        public InterestsController(ILabb4Avanc<Interest> labb4Avanc)
+        public LeisuresController(ILabb4Avanc<Leisure> labb4Avanc)
         {
             _labb4Avanc = labb4Avanc;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllInterests()
+        public async Task<IActionResult> GetAllLeisures()
         {
             return Ok(await _labb4Avanc.GetAll());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Interest>> GetInterest(int id)
+        public async Task<ActionResult<Leisure>> GetLeisure(int id)
         {
             try
             {
@@ -41,66 +41,67 @@ namespace Labb4AvancAPI.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error to retrive single interest from database....");
+                    "Error to retrive single leisure from database....");
             }
-        }
+        }      
+
         [HttpPost]
-        public async Task<ActionResult<Interest>> CreateNewInterest(Interest newInterest)
+        public async Task<ActionResult<Leisure>> CreateNewLeisure(Leisure newLeisure)
         {
             try
             {
-                if (newInterest == null)
+                if (newLeisure == null)
                 {
                     return BadRequest();
                 }
-                var createdInterest = await _labb4Avanc.Add(newInterest);
+                var createdLeisure = await _labb4Avanc.Add(newLeisure);
 
-                return CreatedAtAction(nameof(GetInterest), new { id = createdInterest.InterestId }, createdInterest);
+                return CreatedAtAction(nameof(GetLeisure), new { id = createdLeisure.LeisureId }, createdLeisure);
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error to retrive single interest from database....");
+                    "Error to retrive single leisure from database....");
             }
         }
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Interest>> DeleteInterest(int id)
+        public async Task<ActionResult<Leisure>> DeleteLeisure(int id)
         {
             try
             {
-                var interestToDelete = await _labb4Avanc.GetSingle(id);
-                if (interestToDelete == null)
+                var leisureToDelete = await _labb4Avanc.GetSingle(id);
+                if (leisureToDelete == null)
                 {
-                    return NotFound($"Interest with ID: {id} not found......");
+                    return NotFound($"Leisure with ID: {id} not found......");
                 }
                 return await _labb4Avanc.Delete(id);
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error to delete single interest from database....");
+                    "Error to delete single leisure from database....");
             }
         }
         [HttpPut("{id}")]
-        public async Task<ActionResult<Interest>> UpdateInterest(int id, Interest interest)
+        public async Task<ActionResult<Leisure>> UpdateLeisure(int id, Leisure leisure)
         {
             try
             {
-                if (id != interest.InterestId)
+                if (id != leisure.LeisureId)
                 {
-                    return BadRequest($"Interest ID {id} doesn't match.....");
+                    return BadRequest($"Leisure ID {id} doesn't match.....");
                 }
-                var interestToUpdate = await _labb4Avanc.GetSingle(id);
-                if (interestToUpdate == null)
+                var leisureToUpdate = await _labb4Avanc.GetSingle(id);
+                if (leisureToUpdate == null)
                 {
-                    return NotFound($"Interest with ID {id} not found....");
+                    return NotFound($"Leisure with ID {id} not found....");
                 }
-                return await _labb4Avanc.Update(interest);
+                return await _labb4Avanc.Update(leisure);
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error to find single interest from database....");
+                    "Error to find single leisure from database....");
             }
         }
     }

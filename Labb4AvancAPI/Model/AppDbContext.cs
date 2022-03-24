@@ -14,30 +14,38 @@ namespace Labb4AvancAPI.Model
 
         }
         public DbSet<Person> Persons { get; set; }
-        public DbSet<Interest> Interests { get; set; }  
-        
+        public DbSet<Interest> Interests { get; set; }
+        public DbSet<Leisure> Leisures { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person { PersonId = 1, 
-                    FirstName = "Tommy", 
-                    LastName = "Andersson", 
-                    Phone = "0736334987" });
+                new Person
+                {
+                    PersonId = 1,
+                    FirstName = "Tommy",
+                    LastName = "Andersson",
+                    Phone = "0736334987"
+                });
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person { PersonId = 2, 
-                    FirstName = "Annicka", 
-                    LastName = "Andersson", 
-                    Phone = "089954534" });
+                new Person
+                {
+                    PersonId = 2,
+                    FirstName = "Annicka",
+                    LastName = "Andersson",
+                    Phone = "089954534"
+                });
 
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Person>().HasData(
-                new Person 
-                { PersonId = 3, 
-                    FirstName = "Anna", 
+                new Person
+                {
+                    PersonId = 3,
+                    FirstName = "Anna",
                     LastName = "Lundgren",
                     Phone = "031223344"
                 });
@@ -54,22 +62,20 @@ namespace Labb4AvancAPI.Model
                 });
 
             modelBuilder.Entity<Interest>().HasData(
-               new Interest
-               {
-                   InterestId = 1,
-                   InterestTitle = "Ridning",
-                   InterestDescription = "Rida på ryggen av en häst.",
-                   PersonId = 2
-               });
+              new Interest
+              {
+                  InterestId = 1,
+                  InterestTitle = "Ridning",
+                  InterestDescription = "Rida på ryggen av en häst."
+              });
             modelBuilder.Entity<Interest>().HasData(
            new Interest
            {
                InterestId = 2,
                InterestTitle = "Fotboll",
                InterestDescription = "Lagsport med två lag där varje lag med fötterna " +
-               "ska försöka göra mål i motståndarnas lag.",
-               PersonId = 1
-           
+               "ska försöka göra mål i motståndarnas lag."
+
            });
             modelBuilder.Entity<Interest>().HasData(
             new Interest
@@ -77,9 +83,8 @@ namespace Labb4AvancAPI.Model
                 InterestId = 3,
                 InterestTitle = "Läsa",
                 InterestDescription = "Betrakta och tolka bokstäver eller annan nedskriven information i " +
-                 "t ex böcker och tidningar.",
-                PersonId = 3,
-                
+                 "t ex böcker och tidningar."                
+
             });
             modelBuilder.Entity<Interest>().HasData(
            new Interest
@@ -87,9 +92,26 @@ namespace Labb4AvancAPI.Model
                InterestId = 4,
                InterestTitle = "Kitesurfing",
                InterestDescription = "En typ av segling på vattnet på en bräda där man drivs fram av vinden med hjälp av en " +
-               "drake som man håller i." ,
-               PersonId = 1
+               "drake som man håller i."
            });
+            modelBuilder.Entity<Leisure>().HasData(
+           new Leisure
+           {
+               LeisureId = 1,
+               PersonId = 2,
+               InterestId = 1,
+               Url = "https://www.ridsport.se"
+
+           });
+            modelBuilder.Entity<Leisure>().HasData(
+      new Leisure
+      {
+          LeisureId = 2,
+          PersonId = 1,
+          InterestId = 2,
+          Url = "https://www.fotbollskanalen.se"
+
+      });
         }
     }
 }
