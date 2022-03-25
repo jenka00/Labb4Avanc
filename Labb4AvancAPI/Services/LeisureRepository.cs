@@ -37,12 +37,12 @@ namespace Labb4AvancAPI.Services
 
         public async Task<IEnumerable<Leisure>> GetAll()
         {
-            return await _appContext.Leisures.ToListAsync();
+            return await _appContext.Leisures.Include(l => l.Person).Include(l => l.Interest).ToListAsync();
         }
 
         public async Task<Leisure> GetSingle(int id)
         {
-            return await _appContext.Leisures.FirstOrDefaultAsync(l => l.LeisureId == id);
+            return await _appContext.Leisures.Include(l => l.Person).Include(l => l.Interest).FirstOrDefaultAsync(l => l.LeisureId == id);
         }
 
         public async Task<Leisure> PersonsInterests(int PersId)

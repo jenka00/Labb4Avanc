@@ -35,13 +35,13 @@ namespace Labb4AvancAPI.Services
         }
 
         public async Task<IEnumerable<Person>> GetAll()
-        {           
+        {
             return await _appContext.Persons.ToListAsync();
         }
 
         public async Task<Person> GetSingle(int id)
         {
-            return await _appContext.Persons.FirstOrDefaultAsync(i => i.PersonId == id);
+            return await _appContext.Persons.Include(p=>p.Leisure).ThenInclude(p => p.Interest).FirstOrDefaultAsync(i => i.PersonId == id);
         }
 
         public async Task<Person> Update(Person Entity)
